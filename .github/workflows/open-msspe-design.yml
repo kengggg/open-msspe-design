@@ -24,8 +24,8 @@ jobs:
         run: cargo clippy --all-targets --all-features -- -D warnings --manifest-path od-msspe/Cargo.toml
       - name: Checking doc references
         uses: Icelk/rustdoc-link-check@v2
-          with:
-            private: true
+        with:
+          private: true
       - name: Testing project
         run: cargo test --manifest-path od-msspe/Cargo.toml
 
