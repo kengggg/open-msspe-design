@@ -8,13 +8,37 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+      steps:
+        - name: Checking out sources
+          uses: actions/checkout@v4
+        - name: Installing Rust toolchain
+          run: rustup toolchain install stable
+        - uses: Swatinem/rust-cache@v2
+        - name: Checking formatting
+          run: cargo fmt --check --manifest-path od-msspe/Cargo.toml
+        - name: Checking lints
+          run: cargo clippy --all-targets -- -D warnings --manifest-path od-msspe/Cargo.toml
+        - name: Checking lints with all features
+          run: cargo clippy --all-targets --all-features -- -D warnings --manifest-path od-msspe/Cargo.toml
+        - name: Checking doc references
+          uses: Icelk/rustdoc-link-check@v2
+          with:
+              private: true
+        - name: Testing project
+          run: cargo test --manifest-path od-msspe/Cargo.toml
+
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout sources
+    - name: Checking out sources
       uses: actions/checkout@v4
+    - name: Installing Rust toolchain
+      run: rustup toolchain install stable --profile minimal
+    - uses: Swatinem/rust-cache@v2
     - name: Build
       run: cargo build --verbose --manifest-path od-msspe/Cargo.toml
     - name: Run tests
