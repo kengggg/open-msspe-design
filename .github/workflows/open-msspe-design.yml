@@ -16,6 +16,6 @@ jobs:
     - name: Checkout sources
       uses: actions/checkout@v4
     - name: Build
-      run: cargo build --verbose --manifest-path open-msspe-design/Cargo.toml
+      run: cargo build --verbose --manifest-path od-msspe/Cargo.toml
     - name: Run tests
-      run: cargo test --verbose --manifest-path open-msspe-design/Cargo.toml
+      run: cargo test --verbose --manifest-path od-msspe/Cargo.toml
