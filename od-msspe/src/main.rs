@@ -3,7 +3,7 @@ mod graphdb;
 mod primer;
 
 use crate::delta_g::{run_ntthal, NtthalOptions};
-use crate::graphdb::GraphDB;
+//use crate::graphdb::GraphDB;
 use crate::primer::{check_primers, CheckPrimerParams, PrimerInfo, DEFAULT_MAX_TM, DEFAULT_MIN_TM};
 use clap::Parser;
 use graphdb::Edge;
@@ -14,7 +14,7 @@ use std::arch::aarch64::vabs_f32;
 use std::collections::{HashMap, HashSet};
 use std::hash::Hash;
 use std::io::{self, BufReader};
-use std::iter::Map;
+//use std::iter::Map;
 use std_dev::standard_deviation;
 
 const KMER_SIZE: usize = 13;
