@@ -10,7 +10,7 @@ use graphdb::Edge;
 use itertools::Itertools;
 use ngrams::Ngram;
 use seq_io::fasta::{Reader, Record};
-use std::arch::aarch64::vabs_f32;
+//use std::arch::aarch64::vabs_f32;
 use std::collections::{HashMap, HashSet};
 use std::hash::Hash;
 use std::io::{self, BufReader};
