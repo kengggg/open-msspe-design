@@ -1,0 +1,29 @@
+name: Build and Test Primer3 on Windows
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-Primer3:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Primer3 Repository
+        uses: actions/checkout@v4
+        with:
+          repository: primer3-org/primer3
+          ref: v2.6.1
+
+      - name: Check Compiler
+        run: |
+          gcc --version
+          g++ --version
+        shell: cmd
+
+      - name: Compile and Test Primer3
+        run: |
+          cd src
+          mingw32-make TESTOPTS=--windows
+        shell: cmd
