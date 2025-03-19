@@ -34,7 +34,7 @@ Key features:
 Clone the repository and navigate to the project directory:
 ```bash
 git clone https://github.com/opendream/open-msspe-design.git
-cd open-msspe-design
+cd open-msspe-design/od-msspe
 ```
 
 Install dependecies:
@@ -90,6 +90,7 @@ The following arguments control various aspects of the primer design process:
 #### Temperature Thresholds
 - `--min-tm`: Minimum melting temperature allowed (default: 30.0).
 - `--max-tm`: Maximum melting temperature allowed (default: 60.0).
+- `--tm-stddev`: Set the number of standard deviations away from the mean of the tm values (default: 2).
 - `--max-self-dimer-any-tm`: Maximum Tm for self-dimer at any position (default: 10°C below max-tm).
 - `--max-self-dimer-end-tm`: Maximum Tm for self-dimer at 3' end (default: 10°C below max-tm).
 - `--max-hairpin-tm`: Maximum Tm for hairpin structures (default: 10°C below min-tm).
@@ -100,19 +101,17 @@ The following arguments control various aspects of the primer design process:
 - `--check-cross-dimers`: Enable cross-dimer checking between all primer pairs.
 - `--check-self-dimer`: Enable self-dimer checking for individual primers.
 - `--check-hairpin`: Enable hairpin structure checking for individual primers.
-- `--strict-tm-range`: Remove primers with Tm values >2 standard deviations from mean.
+- `--disable-tm-stddev`: Turns off tm-stddev config. Use if you do not want strictly similar tm values across all primers.
 - `--do-align`: Perform MAFFT multiple sequence alignment if true. Set to false if sequence already aligned.
 
 ### Example
 ```bash
-cd od-msspe
-./target/release/od-msspe --input data/viral_genomes.fasta --output results/msspe_primers.csv --kmer-size=15
+cargo run -- --input data/viral_genomes.fasta --output results/msspe_primers.csv --kmer-size=15
 ```
 
 Debugging
 ```bash
-cd od-msspe
-RUST_LOG=info ./target/release/od-msspe --input data/viral_genomes.fasta --output results/msspe_primers.csv
+RUST_LOG=info cargo run -- --input data/viral_genomes.fasta --output results/msspe_primers.csv
 ```
 
 ---
